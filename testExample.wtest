@@ -1,9 +1,45 @@
-import example.pepita
+import dominic.*
+import autos.*
 
-describe "group of tests for pepita" {
+describe "Test DominicToretto" {
 
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
+  test "Ferrari baja el motor al hacer prueba"{
+    ferrari.hacerPrueba()
+    assert.equals(57, ferrari.motor())
   }
-
+  test  "Ferrari no está en condiciones si motor < 65"{
+    ferrari.motor(60) 
+    assert.equals(false, ferrari.estaEnCondiciones())
+  }
+  test  "Reparar Ferrari lleva motor a 100" {
+    ferrari.reparar() 
+    assert.equals(100, ferrari.motor())
+  }
+  // test  "Reparar flecha duplica combustible y cambia color"{
+  //  flecha.reparar()
+  //  assert.equals(200, flecha.cantCombustible)
+  //  assert.equals(verde, flecha.color)
+  // }
+  test "Flecha con nitrógeno tiene velocidad multiplicada" {
+    flecha.setCombustible(nitrogenoLiquido)
+    assert.equals(2200, flecha.velocidadMaxima())
+  }
+  test "Intocable queda fuera de condiciones con prueba" {
+    intocable.hacerPrueba()
+    assert.notThat(intocable.estaEnCondiciones())
+  }
+  test "Reparar Intocable lo deja en condiciones" {
+    intocable.reparar()
+    assert.that(intocable.estaEnCondiciones())
+}
+  test "inventado esta en condiciones " {
+    inventado.hacerPrueba()
+    assert.that(inventado.estaEnCondiciones())
+  }
+  test "inventado usa todos sus nitros y deja de estar en condiciones " {
+    inventado.hacerPrueba()
+    inventado.hacerPrueba()
+    inventado.hacerPrueba()
+    assert.notThat(inventado.estaEnCondiciones())
+  }  
 }
